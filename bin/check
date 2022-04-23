@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+bin/fastcheck
+
+bin/rails zeitwerk:check
+
+bundle exec rspec

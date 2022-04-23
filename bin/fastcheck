@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e
+
+echo 'Executing rubocop'
+if ! bundle exec rubocop -D -c .rubocop.yml --fail-fast
+then
+  echo 'Rubocop detected issues!'
+  bundle exec rubocop -A -D -c .rubocop.yml
+  echo 'Tried to auto correct the issues, but must be reviewed manually, commit aborted'
+  exit 1
+fi
+
+echo 'Executing brakeman'
+bundle exec brakeman -q -z --no-summary --no-pager
+
+echo 'Executing markdown lint'
+bundle exec mdl ./
+
+echo 'Executing slimlint'
+bundle exec slim-lint app/views/ -c .slim-lint.yml
+
+echo 'Executing eslint'
+yarn eslint app/javascript
