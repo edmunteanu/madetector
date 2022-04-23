@@ -1,0 +1,9 @@
+doctype html
+html.h-100
+  = render 'layouts/head'
+
+  body.h-100.d-flex.flex-column
+    = render 'layouts/navbar'
+    main.h-100
+      = render 'layouts/flash_messages'
+      = yield

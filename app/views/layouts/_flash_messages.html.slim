@@ -1,0 +1,4 @@
+- flash.each do |type, message|
+  .alert.alert-dismissible.flash.show.fade.my-2[role='alert' class=alert_class_for(type)]
+    button.btn-close.no-focus-effect[type='button' data-bs-dismiss='alert' aria-label=t('buttons.close')]
+    == message
