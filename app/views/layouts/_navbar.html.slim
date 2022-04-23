@@ -2,3 +2,7 @@ nav.navbar.navbar-expand-md.navbar-light
   .container
     ul.navbar-nav.ms-auto
       li.nav-item = link_to t('buttons.home'), root_path, class: 'nav-link'
+      - if signed_in?
+        li.nav-item = button_to t('buttons.logout'), destroy_user_session_path, method: :delete, class: 'nav-link'
+      - else
+        li.nav-item = link_to t('buttons.login'), new_user_session_path, class: 'nav-link'
