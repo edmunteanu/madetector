@@ -1,6 +1,9 @@
 APP_HOST: 'madetector.localhost'
 APP_PORT: '3000'
 
+DEVISE_PEPPER: 'rake secret'
+DEVISE_SECRET_KEY: 'rake secret'
+
 MAIL_SENDER: 'yourname+madetector@example.com'
 MAIL_HOST: ''
 MAIL_USERNAME: ''

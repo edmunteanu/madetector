@@ -7,6 +7,7 @@ ruby File.read(File.join(__dir__, '.ruby-version'))
 
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
+gem 'devise'
 gem 'figaro'
 gem 'jbuilder'
 gem 'jsbundling-rails'
