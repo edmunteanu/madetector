@@ -1,0 +1,15 @@
+.container.d-flex.flex-column.align-items-center.justify-content-center.h-100
+  .narrow-container
+    h2.mb-4 = t('devise.passwords.forgot_password')
+
+    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+      = f.error_notification
+
+      = f.input :email,
+              required: true,
+              autofocus: true,
+              input_html: { autocomplete: 'email' }
+
+      = f.button :submit, t('devise.passwords.resend_instructions'), class: 'btn btn-primary my-3'
+
+    = render 'devise/shared/links'

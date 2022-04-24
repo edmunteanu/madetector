@@ -1,0 +1,18 @@
+.container.d-flex.flex-column.align-items-center.justify-content-center.h-100
+  .narrow-container
+    h2.mb-4 = t('buttons.resend')
+
+    = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name),
+            html: { method: :post }) do |f|
+      = f.error_notification
+      = f.full_error :confirmation_token
+
+      = f.input :email,
+              required: true,
+              autofocus: true,
+              value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+              input_html: { autocomplete: 'email' }
+
+      = f.button :submit, t('buttons.resend'), class: 'btn btn-primary my-3'
+
+    = render 'devise/shared/links'

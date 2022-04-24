@@ -1,9 +1,44 @@
 en:
   buttons:
+    back: Back
     close: Close
     home: Home
-    login: Login
-    logout: Logout
+    login: Log in
+    logout: Log out
+    register: Sign up
+    resend: Resend confirmation instructions
+    update: Update
+  devise:
+    confirmations:
+      no_receival: Didn't receive confirmation instructions?
+    mailer:
+      confirmation_instructions:
+        confirm: Confirm my account
+        instructions: "You can confirm your account email through the link below:"
+        welcome: "Welcome %{email}"
+      email_changed:
+        changed_email: "We're contacting you to notify you that your email has been changed to %{email}."
+        changing_email: "We're contacting you to notify you that your email is being changed to %{unconfirmed_email}."
+      greeting: "Hello %{email}"
+      password_change: We're contacting you to notify you that your password has been changed.
+      reset_password_instructions:
+        change_password: Change my password
+        information: Someone has requested a link to change your password. You can do this through the link below.
+        not_changed: Your password won't change until you access the link above and create a new one.
+        not_requested: If you didn't request this, please ignore this email.
+    passwords:
+      change: Change your password
+      change_hint: Leave blank if you do not want to change the password
+      confirm: Confirm new password
+      current_password_hint: We need your current password to confirm your changes
+      forgot_password: Forgot your password?
+      length_hint: "%{length} characters minimum"
+      new: New password
+      resend_instructions: Get password reset instructions
+    registrations:
+      edit: "Edit %{resource_name}"
+      notice: "Notice: Tracking methods are applied, if you don't want your information to be saved, please do not register."
+      pending_confirmation: "Currently waiting confirmation for: %{unconfirmed_email}"
   home:
     intro: This is a small prototype which aims to detect and stop a user from creating multiple accounts.
   title: MADetector
