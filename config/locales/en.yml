@@ -37,6 +37,8 @@ en:
       resend_instructions: Get password reset instructions
     registrations:
       edit: "Edit %{resource_name}"
+      new:
+        notice: Potential attempt to create multiple accounts detected
       notice: "Notice: Tracking methods are applied, if you don't want your information to be saved, please do not register."
       pending_confirmation: "Currently waiting confirmation for: %{unconfirmed_email}"
   home:
