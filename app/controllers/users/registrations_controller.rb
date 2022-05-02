@@ -2,12 +2,13 @@
 
 module Users
   class RegistrationsController < Devise::RegistrationsController
+    include CookieGenerator
+
     # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     def create
       build_resource(sign_up_params)
 
       client_ip = request.remote_ip
-
       resource.last_sign_in_ip = client_ip
       resource.current_sign_in_ip = client_ip
 
@@ -18,9 +19,11 @@ module Users
         return
       end
 
-      if user_amount_with_ip(client_ip).zero?
+      if user_amount_with_ip(client_ip).zero? && cookies[:existing_user].blank?
         resource.save
         yield resource if block_given?
+
+        generate_cookie
 
         if resource.active_for_authentication?
           # Covered by tests already in the Devise Test Suite

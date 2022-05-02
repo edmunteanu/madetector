@@ -44,9 +44,36 @@ RSpec.describe Users::RegistrationsController, type: :request do
         end
       end
 
-      context 'when no user with a similar IP to the request IP exists' do
+      context 'when the cookie is present' do
+        let(:user) { create(:user, :confirmed) }
+
+        before do
+          cookies[:existing_user] = true
+        end
+
+        it 'does not create a new user' do
+          expect { http_request }.not_to change(User, :count)
+        end
+
+        it 'displays the sign up page again' do
+          expect(http_request).to redirect_to(new_user_registration_path)
+        end
+
+        it 'shows an alert with the correct message' do
+          http_request
+          expect(flash[:notice]).to eq I18n.t('devise.registrations.new.notice')
+        end
+      end
+
+      context 'when neither a cookie nor a user with a similar IP to the request IP exists' do
         it 'creates a new user' do
           expect { http_request }.to change(User, :count)
+        end
+
+        it 'generates a cookie with the user id' do
+          http_request
+          jar = ActionDispatch::Cookies::CookieJar.build(request, response.cookies)
+          expect(jar[:existing_user]).not_to be_blank
         end
 
         it 'redirects to the home page' do
