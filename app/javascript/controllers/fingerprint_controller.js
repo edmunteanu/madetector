@@ -1,12 +1,20 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  connect() {
+  static get targets() {
+    return ['fingerprint'];
+  }
+
+  initialize() {
+    this.generateFingerprint();
+  }
+
+  generateFingerprint() {
     const fpPromise = import('@fingerprintjs/fingerprintjs')
         .then(FingerprintJS => FingerprintJS.load());
 
     fpPromise
         .then(fp => fp.get())
-        .then(result => console.log(`Fingerprint: ${result.visitorId}`))
+        .then(result => this.fingerprintTarget.value = result.visitorId);
   }
 }

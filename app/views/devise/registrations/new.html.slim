@@ -1,26 +1,29 @@
 .container.d-flex.flex-column.align-items-center.justify-content-center.h-100
-  .narrow-container[data-controller='fingerprint']
+  .narrow-container
     h2.mb-4 = t('buttons.register')
 
     p = t('devise.registrations.notice')
 
     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      = f.error_notification
+      div[data-controller='fingerprint']
+        = f.error_notification
 
-      = f.input :email,
-              required: true,
-              autofocus: true,
-              input_html: { autocomplete: 'email' },
-              wrapper_html: { class: 'mb-3' }
-      = f.input :password,
-              required: true,
-              hint: (t('devise.passwords.length_hint', length: @minimum_password_length) if @minimum_password_length),
-              input_html: { autocomplete: 'new-password' },
-              wrapper_html: { class: 'mb-3' }
-      = f.input :password_confirmation,
-              required: true,
-              input_html: { autocomplete: 'new-password' }
+        = f.hidden_field :fingerprint, data: { fingerprint_target: 'fingerprint' }
 
-      = f.button :submit, t('buttons.register'), class: 'btn btn-primary my-3'
+        = f.input :email,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: 'email' },
+                wrapper_html: { class: 'mb-3' }
+        = f.input :password,
+                required: true,
+                hint: (t('devise.passwords.length_hint', length: @minimum_password_length) if @minimum_password_length),
+                input_html: { autocomplete: 'new-password' },
+                wrapper_html: { class: 'mb-3' }
+        = f.input :password_confirmation,
+                required: true,
+                input_html: { autocomplete: 'new-password' }
+
+        = f.button :submit, t('buttons.register'), class: 'btn btn-primary my-3'
 
     = render 'devise/shared/links'
