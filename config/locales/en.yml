@@ -44,3 +44,8 @@ en:
   home:
     intro: This is a small prototype which aims to detect and stop a user from creating multiple accounts.
   title: MADetector
+  users:
+    index:
+      confirmed: Confirmed account?
+      current_ip: Current IP
+      last_ip: Last IP

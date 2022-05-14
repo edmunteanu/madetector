@@ -1,0 +1,12 @@
+.container.mt-3
+  table.table
+    thead
+      tr
+        th = User.human_attribute_name(:id)
+        th = User.human_attribute_name(:email)
+        th = t('users.index.current_ip')
+        th = t('users.index.last_ip')
+        th = User.human_attribute_name(:fingerprint)
+        th = t('users.index.confirmed')
+    tbody
+      = render @users

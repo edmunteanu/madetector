@@ -17,6 +17,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include ActiveSupport::Testing::TimeHelpers
   config.include JavaScriptErrorReporter, type: :system, js: true
+  config.include Devise::Test::IntegrationHelpers, type: :request
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
