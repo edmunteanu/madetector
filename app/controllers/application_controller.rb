@@ -7,5 +7,6 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[fingerprint])
+    devise_parameter_sanitizer.permit(:sign_in, keys: %i[fingerprint])
   end
 end

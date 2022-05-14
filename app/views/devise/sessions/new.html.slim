@@ -3,17 +3,20 @@
     h2.mb-4 = t('buttons.login')
 
     = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      = f.input :email,
-              required: false,
-              autofocus: true,
-              input_html: { autocomplete: 'email' },
-              wrapper_html: { class: 'mb-3' }
-      = f.input :password,
-              required: false,
-              input_html: { autocomplete: 'current-password' },
-              wrapper_html: { class: 'mb-3' }
-      = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+      div[data-controller='fingerprint']
+        = f.hidden_field :fingerprint, data: { fingerprint_target: 'fingerprint' }
 
-      = f.button :submit, t('buttons.login'), class: 'btn btn-primary my-3'
+        = f.input :email,
+                required: false,
+                autofocus: true,
+                input_html: { autocomplete: 'email' },
+                wrapper_html: { class: 'mb-3' }
+        = f.input :password,
+                required: false,
+                input_html: { autocomplete: 'current-password' },
+                wrapper_html: { class: 'mb-3' }
+        = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+
+        = f.button :submit, t('buttons.login'), class: 'btn btn-primary my-3'
 
     = render 'devise/shared/links'
