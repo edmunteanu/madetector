@@ -52,20 +52,10 @@ module Users
       true
     end
 
-    def users_with_ip_and_fingerprint(client_ip, client_fingeprint)
+    def users_with_ip_and_fingerprint(client_ip, client_fingerprint)
       query_ip = "#{client_ip.split('.').first(3).join('.')}%"
       User.where('fingerprint LIKE ? AND (current_sign_in_ip LIKE ? OR last_sign_in_ip LIKE ?)',
-                 client_fingeprint, query_ip, query_ip)
+                 client_fingerprint, query_ip, query_ip)
     end
-
-    # def users_with_ip(client_ip)
-    #   # if the client_ip is in IPv6 format, the following code will assign the whole IP instead of shortening it
-    #   query_ip = "#{client_ip.split('.').first(3).join('.')}%"
-    #   User.where('current_sign_in_ip LIKE ? OR last_sign_in_ip LIKE ?', query_ip, query_ip)
-    # end
-    #
-    # def user_with_fingerprint(fingerprint)
-    #   User.where(fingerprint: fingerprint)
-    # end
   end
 end

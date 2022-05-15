@@ -6,6 +6,8 @@ require_relative '../config/environment'
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'
+require 'email_spec'
+require 'email_spec/rspec'
 require 'selenium/webdriver'
 require 'super_diff/rspec-rails'
 
